@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+    <title>Portfolio - Prosjekter</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+main {
+    flex: 1;
+}
+
+header {
+    text-align: left;
+    font-size: larger;
+    padding: 10px;
+}
+
+h1 {
+    font-weight: bold;
+    color: rgb(101, 101, 101);
+}
+
+#alle-prosjekter h2 {
+    color: rgb(115, 101, 87);
+    text-align: center;
+}
+
+#nytt-prosjekt h2 {
+    color: rgb(115, 101, 87);
+    text-align: center;
+}
+
+#alle-prosjekter {
+    padding: 20px;
+    background-color: rgb(235, 224, 255);
+}
+
+#nytt-prosjekt {
+    padding: 20px;
+    background-color: rgb(235, 224, 255);
+}
+
+form {
+
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid rgb(226, 226, 226);
+    border-radius: 8px;
+    padding: 18px;
+}
+
+form input, form textarea {
+    width: 100%;
+    border: 1px solid rgb(226, 226, 226);
+    padding: 8px;
+    margin-bottom: 15px;
+    margin-top: 5px;
+}
+
+label {
+    color: rgb(101, 101, 101);
+    font-size: large;
+}
+
+form button {
+    color: rgb(120, 108, 95);
+    font-weight: bold;
+    border: 1px solid rgb(226, 226, 226);
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+footer {
+        background-color:rgb(101, 101, 101);
+        color: rgb(223, 223, 223);
+        text-align: center;
+        line-height: 5;
+        font-size:medium;
+}
+</style>
+</head>
+
+<body>
+    <div class="container">
+    <header>
+        <h1>Portfolio</h1>
+    </header>
+    <div class="container"></div>
+    <main>
+
+    <section id="alle-prosjekter">
+        <h2>Prosjekter</h2>
+        <ul id="liste-over-prosjekter"></ul>
+    </section>
+
+    <section id="nytt-prosjekt">
+        <form id="nytt-prosjekt-skjema">
+            <h2>Skjema</h2>
+            <label for="prosjekt-tittel">Tittel</label>
+            <input type="text" id="prosjekt-tittel" name="tittel" placeholder="Gi prosjektet en tittel" required>
+            
+            <label for="prosjekt-beskrivelse">Beskrivelse</label>
+            <textarea id="prosjekt-beskrivelse" name="beskrivelse" placeholder="Gi prosjektet en beskrivelse" required></textarea>
+         
+            <button type="submit">Last opp</button>
+        </form>
+    </section>
+
+    </main>
+    <footer>
+        <p>kriststo@hiof.no</p>
+    </footer>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        hentProsjekter();
+    });
+
+    function hentProsjekter() {
+        fetch('/prosjektfil')
+            .then(response => response.json())
+            .then(prosjekter => {
+                const prosjektListe = document.getElementById('liste-over-prosjekter');
+                prosjektListe.innerHTML = '';
+
+                if (prosjekter.length === 0) {
+                    const feilmelding = document.createElement('p');
+                    feilmelding.textContent = 'Ingen prosjekter enda.';
+                    prosjektListe.appendChild(feilmelding);
+                } else {
+                    prosjekter.forEach(prosjekt => {
+                        const prosjektObjekt = document.createElement('li');
+                        prosjektObjekt.innerHTML = `
+                            <h3>${prosjekt.tittel}</h3>
+                            <p>${prosjekt.beskrivelse}</p>
+                        `;
+                        prosjektListe.appendChild(prosjektObjekt);
+                    });
+                }
+            })
+    }
+
+    const form = document.getElementById('nytt-prosjekt-skjema');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const tittel = document.getElementById('prosjekt-tittel').value;
+        const beskrivelse = document.getElementById('prosjekt-beskrivelse').value;
+
+        const nyttProsjekt = {
+            tittel: tittel,
+            beskrivelse: beskrivelse
+        };
+
+        // POST
+        fetch('/prosjektfil', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(nyttProsjekt)
+        })
+        .then(response => {
+            if (response.ok) {
+                document.getElementById('prosjekt-tittel').value = '';
+                document.getElementById('prosjekt-beskrivelse').value = '';
+                return response.json();
+            };
+        })
+        .then(() => {
+            hentProsjekter();
+        });
+    });
+    </script>
+</body>
+</html>

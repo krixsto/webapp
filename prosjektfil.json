@@ -1,0 +1,17 @@
+[
+  {
+    "id": "1",
+    "tittel": "Prosjekt 1",
+    "beskrivelse": "Beskrivelse av prosjekt 1"
+  },
+  {
+    "id": "2",
+    "tittel": "Prosjekt 2",
+    "beskrivelse": "Beskrivelse av prosjekt 2"
+  },
+  {
+    "id": "3",
+    "tittel": "Prosjekt 3",
+    "beskrivelse": "Beskrivelse av prosjekt 3"
+  }
+]

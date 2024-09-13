@@ -1,0 +1,19 @@
+{
+  "name": "webapp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "type": "module",
+  "dependencies": {
+    "@hono/node-server": "^1.12.2",
+    "cors": "^2.8.5",
+    "hono": "^4.6.1",
+    "node-fetch": "^3.3.2"
+  }
+}
