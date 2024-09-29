@@ -1,0 +1,138 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.prosjekt-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.prosjekt-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 2px;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    overflow: auto;
+}
+
+main {
+    flex-grow: 1;
+}
+
+header {
+    text-align: left;
+    font-size: larger;
+    padding: 10px;
+}
+
+h1 {
+    font-weight: bold;
+    color: rgb(101, 101, 101);
+}
+
+#alle-prosjekter h2 {
+    color: rgb(128, 126, 130);
+    text-align: center;
+}
+
+#nytt-prosjekt h2 {
+    color: rgb(128, 126, 130);
+    text-align: center;
+}
+
+#alle-prosjekter {
+    padding: 20px;
+    background-color: rgb(245, 239, 248);
+}
+
+#nytt-prosjekt {
+    padding: 20px;
+    background-color: white;
+}
+
+#prosjekt-count {
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+#prosjekt-count h2 {
+    font-size: 1.0em;
+    color: rgb(101,101,101);
+    margin-bottom: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid rgb(226, 226, 226);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+}
+
+form input, form textarea {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgb(226, 226, 226);
+    padding: 8px;
+    margin-bottom: 15px;
+    margin-top: 5px;
+    resize: none;
+}
+
+label {
+    color: rgb(101, 101, 101);
+    font-size: large;
+}
+
+form button, .remove-button {
+    color:rgb(128, 126, 130);
+    background-color: rgb(240, 238, 238);
+    border: 1px solid rgb(216, 216, 216);
+    font-weight: bold;
+    margin: auto;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form button:hover, .remove-button:hover {
+    color: rgb(101, 101, 101);
+    transition: 0.3s;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border: 1px solid rgb(174, 174, 174);
+}
+
+footer {
+        background-color:rgb(65, 65, 65);
+        color: rgb(223, 223, 223);
+        text-align: center;
+        line-height: 5;
+        font-size: 0.9em;
+        margin-top: auto;
+}
