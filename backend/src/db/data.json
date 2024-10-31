@@ -1,0 +1,38 @@
+[
+    {
+      "id": "42184aaf-f3d5-4802-8654-8160017574f8",
+      "title": "Prosjekt 1",
+      "description": "Beskrivelse av prosjekt 1",
+      "publishedAt": "2024-10-10",
+      "public": true,
+      "status": false,
+      "tags": [
+        "tag1",
+        " tag2"
+      ]
+    },
+    {
+      "id": "bf3baf9c-ed31-4af0-b9da-a53c0c14b480",
+      "title": "Prosjekt 2",
+      "description": "Beskrivelse av prosjekt 2",
+      "publishedAt": "2024-08-21",
+      "public": false,
+      "status": true,
+      "tags": [
+        "tag1"
+      ]
+    },
+    {
+      "id": "dd1c67ce-528c-4b6f-b25a-1933c4450f25",
+      "title": "Prosjekt 3",
+      "description": "Beskrivelse av prosjekt 3",
+      "publishedAt": "2023-10-04",
+      "public": false,
+      "status": false,
+      "tags": [
+        "tag1",
+        " tag2",
+        " tag3"
+      ]
+    }
+  ]
